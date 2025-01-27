@@ -180,7 +180,7 @@ socket.on('loginResult', (data) => {
     callScreen.style.display = 'flex';
     socket.emit('set-username', username);
     document.getElementById('leftUserName').textContent = username;
-    applyAudioStates(); 
+    applyAudioStates();
   } else {
     loginErrorMessage.textContent = "Lütfen girdiğiniz bilgileri kontrol edip tekrar deneyin";
     loginErrorMessage.style.display = 'block';
@@ -807,7 +807,7 @@ function initPeer(userId, isInitiator) {
     }
   };
   peer.onconnectionstatechange = () => {
-    console.log(`Peer ${userId} state:`, peer.connectionState);
+    console.log("Peer", userId, "state:", peer.connectionState);
   };
 
   if (isInitiator) createOffer(peer, userId);
@@ -848,7 +848,7 @@ socket.on("signal", async (data) => {
 
   if (!peer || peer.connectionState === 'closed') {
     if (!localStream) {
-      console.warn(`localStream yok => pending user: ${from}`);
+      console.warn("localStream yok => pending user:", from);
       pendingNewUsers.push(from);
       return;
     }
@@ -1002,17 +1002,17 @@ function applyAudioStates() {
     });
   }
   if (!micEnabled || selfDeafened) {
-    micToggleButton.innerHTML = `<span class="material-icons">mic_off</span>`;
+    micToggleButton.innerHTML = '<span class="material-icons">mic_off</span>';
     micToggleButton.classList.add('btn-muted');
   } else {
-    micToggleButton.innerHTML = `<span class="material-icons">mic</span>`;
+    micToggleButton.innerHTML = '<span class="material-icons">mic</span>';
     micToggleButton.classList.remove('btn-muted');
   }
   if (selfDeafened) {
-    deafenToggleButton.innerHTML = `<span class="material-icons">headset_off</span>`;
+    deafenToggleButton.innerHTML = '<span class="material-icons">headset_off</span>';
     deafenToggleButton.classList.add('btn-muted');
   } else {
-    deafenToggleButton.innerHTML = `<span class="material-icons">headset</span>`;
+    deafenToggleButton.innerHTML = '<span class="material-icons">headset</span>';
     deafenToggleButton.classList.remove('btn-muted');
   }
   remoteAudios.forEach(audio => {
@@ -1264,3 +1264,4 @@ socket.on('channelHistory', (data) => {
     displayChatMessage(msg);
   });
 });
+w
